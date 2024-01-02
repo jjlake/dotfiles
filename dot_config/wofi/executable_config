@@ -1,0 +1,10 @@
+mode=drun
+insensitive=true
+allow_images=true
+width=500px
+term=gnome-terminal
+hide_scroll=true
+halign=start
+valign=start
+content_halign=start
+dynamic_lines=true
