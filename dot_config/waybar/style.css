@@ -12,23 +12,21 @@
 
 @keyframes blink-warning {
     70% {
-        color: white;
+        opacity: 0.0;
     }
 
     to {
-        color: white;
-        background-color: orange;
+        opacity :1.0;
     }
 }
 
 @keyframes blink-critical {
     70% {
-      color: white;
+      opacity: 0.0;
     }
 
     to {
-        color: white;
-        background-color: red;
+        opacity: 1.0; 
     }
 }
 
@@ -74,19 +72,20 @@
  * Module styles
  * -------------------------------------------------------------------------- */
 
+
 #battery {
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
 
-#battery.warning {
-    color: orange;
-}
-
-#battery.critical {
-    color: red;
-}
+/* #battery.warning { */
+/*     color: orange; */
+/* } */
+/**/
+/* #battery.critical { */
+/*     color: red; */
+/* } */
 
 #battery.warning.discharging {
     animation-name: blink-warning;
@@ -106,32 +105,15 @@
   /* No styles */
 }
 
-#cpu.warning {
-    color: orange;
-}
-
-#cpu.critical {
-    color: red;
-}
-
-#memory {
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#memory.warning {
-    color: orange;
-}
-
-#memory.critical {
-    color: red;
-    animation-name: blink-critical;
-    animation-duration: 2s;
-}
-
+/* #cpu.warning { */
+/*     color: orange; */
+/* } */
+/**/
+/* #cpu.critical { */
+/*     color: red; */
+/* } */
 #mode {
-    background: #64727D;
+    background-color: #64727D;
     border-top: 2px solid white;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 2px;
@@ -141,9 +123,9 @@
     /* No styles */
 }
 
-#network.disconnected {
-    color: orange;
-}
+/* #network.disconnected { */
+/*     color: orange; */
+/* } */
 
 #pulseaudio {
     /* No styles */
@@ -161,9 +143,9 @@
     /* No styles */
 }
 
-#temperature.critical {
-    color: red;
-}
+/* #temperature.critical { */
+/*     color: red; */
+/* } */
 
 #tray {
     /* No styles */
@@ -171,15 +153,19 @@
 
 #window {
     font-weight: bold;
+
+    border-bottom-style: none;
 }
 
 #workspaces button {
     border-top: 2px solid transparent;
     /* To compensate for the top border and still have vertical centering */
     padding-bottom: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
     color: #888888;
+}
+
+#workspaces label {
+      border-bottom-style: none;
 }
 
 #workspaces button.focused {
@@ -203,12 +189,16 @@
     padding-right: 5px;
 }
 
-widget *
+/*box {
+	margin-left: 50px;
+}*/
+
+widget label
 {
-  border-bottom-width: 2px;
+  border-bottom-width: 4px;
   border-bottom-style: solid;
-  margin-left: 5px;
-  margin-right: 5px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 #group-network{
@@ -221,12 +211,56 @@ widget *
   border-color: #d0d1e6;
 }
 
+#cpu{
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#cpu.warning {
+    color: #222222;
+    background-color: #d0d1e6;
+}
+
+#cpu.critical {
+    color: #222222;
+    background-color: #d0d1e6;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+
 #memory{
   border-color: #a6bddb;
 }
 
+#memory {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory.warning {
+    color: #222222;
+    background-color: #a6bddb;
+}
+
+#memory.critical {
+    color: #222222;
+    background-color: #a6bddb;
+    animation-name: blink-critical;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+
 #disk {
   border-color: #74a9cf;
+}
+
+#pulseaudio {
+  border-color: #3690c0; 
 }
 
 #temperature{
@@ -238,6 +272,26 @@ widget *
 
 .modules-right:nth-child(1){
   border-color: red;
+}
+
+#clock{
+  border-color: #0570b0;
+}
+
+#custom-power{
+	color: white;
+  background-color: #034e7b;
+  border-bottom-style: none;
+}
+
+#custom-launcher{
+  background-color: #3690c0;
+  border-bottom-style: none;
+}
+
+
+.modules-right {
+  border-bottom-style: none;
 }
 
 /* palette
