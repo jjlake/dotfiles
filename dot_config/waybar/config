@@ -20,8 +20,10 @@
 
     "modules-left": [
         "custom/launcher",
+	"custom/updates",
         "sway/workspaces",
         "sway/mode"
+//      "mpris"
     ],
     "modules-center": [
         "sway/window"
@@ -105,8 +107,9 @@
     },*/
 
     "cpu": {
-        "interval": 5,
-        "format": "  {usage}%", // Icon: microchip
+  	"format": " {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+  	"format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "interval": 2,
         "states": {
           "warning": 70,
           "critical": 90
@@ -157,7 +160,7 @@
 
     "network#network": {
         "interval": 5,
-        "format-wifi": "  {essid} ({signalStrength}%) {bandwidthDownBytes} {bandwidthUpBytes}", // Icon: wifi
+        "format-wifi": "  {essid} ({signalStrength}%)", // Icon: wifi
         "format-ethernet": " ", //{ifname}: {ipaddr}/{cidr}", // Icon: ethernet
         "format-disconnected": "󰌙 ",
         "tooltip-format": "{ifname}: {ipaddr}" 
@@ -179,20 +182,39 @@
     },
 
     "sway/workspaces": {
-        "all-outputs": false,
-        "disable-scroll": true,
-        "format": "{icon} {name}",
-        "format-icons": {
-            "1:www": "龜", // Icon: firefox-browser
-            "2:mail": "", // Icon: mail
-            "3:editor": "", // Icon: code
-            "4:terminals": "", // Icon: terminal
-            "5:portal": "", // Icon: terminal
-            "urgent": "",
-            "focused": "",
-            "default": ""
-        }
-    },
+   "all-outputs": false,
+   "disable-scroll": true,
+  "format": "<span size='larger'>{name}</span> {windows}",
+  "format-window-separator": "  ",
+  "window-rewrite-default": "{name}",
+  "window-format": "<span color='#e0e0e0'>{name}</span>",
+  "window-rewrite": {
+    "class<firefox>": "",
+    "class<foot>": "",
+	"title<(.*) - VSCodium>": "  $1",  // captures part of the window title and formats it into output
+	"title<.* - (.*) - VSCodium>": "  $1",  // captures part of the window title and formats it into output
+	"Steam": " ",  // captures part of the window title and formats it into output
+    "title<.*Discord>": "󰍩",
+    "title<.*Signal>": "󰍩",
+    "title<.*Thunar>": "󰉋"
+  }
+},
+
+    // "sway/workspaces": {
+    //     "all-outputs": false,
+    //     "disable-scroll": true,
+    //     "format": "{icon} {name}",
+    //     "format-icons": {
+    //         "1:www": "龜", // Icon: firefox-browser
+    //         "2:mail": "", // Icon: mail
+    //         "3:editor": "", // Icon: code
+    //         "4:terminals": "", // Icon: terminal
+    //         "5:portal": "", // Icon: terminal
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
 
     "pulseaudio": {
         //"scroll-step": 1,
@@ -239,6 +261,35 @@
     "format": "󰣇",
     "tooltip": false,
     "on-click": "wofi"
+},
+"custom/updates": {
+    "format": "{} {icon}",
+    "return-type": "json",
+    "format-icons": {
+        "has-updates": "󱍷",
+        "updated": ""
+    },
+    "exec-if": "which waybar-module-pacman-updates",
+    "exec": "waybar-module-pacman-updates --no-zero-output"
+},
+
+"mpris": {
+	"format": "{player_icon} {}",
+    "interval": 1,
+	"format-paused": "DEFAULT: {status_icon} <i>{dynamic}</i>",
+	"player-icons": {
+		"default": "▶",
+        "firefox": "🌐",
+        "librewolf": "🌐",
+        "chrome": ".🌐",
+        "chromium": ".🌐",
+		"mpv": "🎵"
+	},
+	"status-icons": {
+		"paused": "⏸"
+	}
+	// "ignored-players": ["firefox"]
 }
+
 }
 

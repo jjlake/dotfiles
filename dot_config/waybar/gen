@@ -1,0 +1,78 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+    "background": "#1e1e1e",
+    "foreground": "#d8dee9",
+    "font": "monospace 10",
+
+    "modules-left": [
+        "idle_inhibitor"
+    ],
+
+    "modules-center": [
+        "window"
+    ],
+
+    "modules-right": [
+        "keyboard_layout",
+        "tray",
+        "pulseaudio",
+        "battery",
+        "temperature",
+        "clock",
+        "powermenu"
+    ],
+
+    "idle-inhibitor": {
+        "inhibit-delay": 10,
+        "interval": 5
+    },
+
+    "keyboard-layout": {
+        "format": "{}",
+        "format-underline": true,
+        "output_format": "{layout}"
+    },
+
+    "pulseaudio": {
+        "format": "<span font_family='FontAwesome'>♪</span> {volume}%",
+        "format_muted": "<span font_family='FontAwesome'>♪</span> 🔇",
+        "interval": 1
+    },
+
+    "battery": {
+        "format-charging": "{capacity}% ⟳",
+        "format-discharging": "{capacity}% ⚡",
+        "format-full": "{capacity}%",
+        "interval": 5,
+        "thresholds": [
+            [0, "#ff0000"],
+            [10, "#e67e22"],
+            [30, "#f1c40f"],
+            [50, "#2ecc71"],
+            [70, "#3498db"],
+            [90, "#9b59b6"]
+        ]
+    },
+
+    "temperature": {
+        "format": "{temp}°C",
+        "hwmon-sensor": "/sys/class/thermal/thermal_zone0/temp",
+        "interval": 1
+    },
+
+    "clock": {
+        "format": "%a %d %b %H:%M",
+        "interval": 60
+    },
+
+    "powermenu": {
+        "items": [
+            {"label": "Lock", "exec": "swaylock"},
+            {"label": "Suspend", "exec": "systemctl suspend"},
+            {"label": "Reboot", "exec": "systemctl reboot"},
+            {"label": "Shutdown", "exec": "poweroff"}
+        ]
+    }
+}
